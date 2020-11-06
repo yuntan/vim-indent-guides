@@ -58,6 +58,33 @@ function! indent_guides#enable()
       call add(w:indent_guides_matches, matchadd(l:group, l:hard_pattern))
     end
   endfor
+
+  let l:view = winsaveview()
+  call cursor(1, 1)
+  call nvim_buf_clear_namespace(0, s:ns, 1, -1)
+  while v:true
+    let l:line = search('^$', 'W')
+    if l:line ==# 0
+      break
+    endif
+
+    let l:indent = cindent(l:line)
+    if l:indent ==# 0
+      continue
+    endif
+
+    let l:guides = [[' ', '']]
+    for l:level in range(l:indent / s:indent_size)
+      let l:guide = repeat(' ', s:indent_size)
+      if l:level % 2 == 0
+        call add(l:guides, [l:guide, 'IndentGuidesEven'])
+      else
+        call add(l:guides, [l:guide, 'IndentGuidesOdd'])
+      endif
+    endfor
+    call nvim_buf_set_virtual_text(0, s:ns, l:line - 1, l:guides, {})
+  endwhile
+  call winrestview(l:view)
 endfunction
 
 "
@@ -189,6 +216,7 @@ function! indent_guides#init_script_vars()
   endif
   let s:guide_size  = indent_guides#calculate_guide_size()
   let s:hi_normal   = indent_guides#capture_highlight('Normal')
+  let s:ns = nvim_create_namespace('neovim-indent-guides')
 
   " remove 'font=<value>' from the s:hi_normal string (only seems to happen on Vim startup in Windows)
   let s:hi_normal = substitute(s:hi_normal, ' font=[A-Za-z0-9:]\+', "", "")
