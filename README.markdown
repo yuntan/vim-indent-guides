@@ -1,5 +1,5 @@
 # Neovim Indent Guides
-Neovim Indent Guides is a plugin for visually displaying indent levels in neovim, **even on blakn lines**.
+Neovim Indent Guides is a plugin for visually displaying indent levels in neovim, **even on blank lines**.
 
 [![Image from Gyazo](https://i.gyazo.com/89d08604557fb199808c08ac6a164662.png)](https://gyazo.com/89d08604557fb199808c08ac6a164662)
 
