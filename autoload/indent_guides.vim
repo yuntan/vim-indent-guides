@@ -73,7 +73,7 @@ function! indent_guides#enable()
       continue
     endif
 
-    let l:guides = [[' ', '']]
+    let l:guides = [[repeat(' ', s:indent_size - 1), '']]
     for l:level in range(l:indent / s:indent_size)
       let l:guide = repeat(' ', s:indent_size)
       if l:level % 2 == 0
