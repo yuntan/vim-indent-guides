@@ -55,7 +55,7 @@ call s:InitVariable('g:indent_guides_auto_colors', 1)
 call s:InitVariable('g:indent_guides_color_change_percent', 10) " ie. 10%
 call s:InitVariable('g:indent_guides_guide_size', 0)
 call s:InitVariable('g:indent_guides_start_level', 1)
-call s:InitVariable('g:indent_guides_enable_on_vim_startup', 0)
+call s:InitVariable('g:indent_guides_enable_on_vim_startup', 1)
 call s:InitVariable('g:indent_guides_debug', 0)
 call s:InitVariable('g:indent_guides_space_guides', 1)
 call s:InitVariable('g:indent_guides_tab_guides', 1)
